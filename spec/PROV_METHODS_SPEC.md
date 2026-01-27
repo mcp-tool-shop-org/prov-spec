@@ -1,10 +1,42 @@
-# Provenance Methods Specification v0.1
+# Provenance Methods Specification (prov-spec)
 
-**Status:** Normative
-**Version:** 0.1.0
-**Last Updated:** 2025-01
+```
+Version:   0.1.0
+Status:    Stable
+Published: 2025-01-26
+```
 
-This specification defines the grammar, semantics, and conformance requirements for provenance method identifiers used in `prov.record.v0.1`.
+**This specification defines the grammar, semantics, and conformance requirements for provenance method identifiers used in `prov.record.v0.1`.**
+
+---
+
+## 0. Change Control
+
+This section defines the rules for evolving this specification.
+
+### Allowed Changes by Version Type
+
+| Change Type | Patch (0.1.x) | Minor (0.x.0) | Major (x.0.0) |
+|-------------|---------------|---------------|---------------|
+| Typo fixes, clarifications | YES | YES | YES |
+| New method IDs | NO | YES | YES |
+| New optional fields | NO | YES | YES |
+| Normative requirement changes | NO | YES | YES |
+| Grammar changes | NO | NO | YES |
+| Canonicalization changes | NO | NO | YES |
+| Breaking semantic changes | NO | NO | YES |
+
+### Stability Guarantee
+
+> **Method IDs marked `stable` are append-only and will never change semantics.**
+> **Compatibility is guaranteed within a major version.**
+
+### Deprecation Policy
+
+- Deprecated methods remain valid forever
+- Deprecated methods MUST have `superseded_by` in the catalog
+- Implementations SHOULD emit warnings for deprecated methods
+- Implementations MUST NOT reject deprecated methods
 
 ---
 

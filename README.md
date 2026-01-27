@@ -40,6 +40,19 @@ A normative specification defining:
 
 ## Quick Start
 
+### Verify in 10 seconds
+
+```bash
+# Clone and run a test vector
+git clone https://github.com/prov-spec/prov-spec
+cd prov-spec
+python tools/python/prov_validator.py check-vector integrity.digest.sha256
+```
+
+Expected output: `INFO: Test vector integrity.digest.sha256 passed`
+
+---
+
 ### 1. Understand the spec
 
 Read [`spec/PROV_METHODS_SPEC.md`](spec/PROV_METHODS_SPEC.md) — the normative specification.
