@@ -1,4 +1,4 @@
-> ⚠️ **This repository has moved to [accessibility-suite](https://github.com/mcp-tool-shop/accessibility-suite)**
+> ⚠️ **This repository has moved to [accessibility-suite](https://github.com/mcp-tool-shop-org/accessibility-suite)**
 > Source now lives at: `docs/prov-spec/`
 
 ---
@@ -49,7 +49,7 @@ A normative specification defining:
 
 ```bash
 # Clone and run a test vector
-git clone https://github.com/prov-spec/prov-spec
+git clone https://github.com/mcp-tool-shop-org/prov-spec
 cd prov-spec
 python tools/python/prov_validator.py check-vector integrity.digest.sha256
 ```

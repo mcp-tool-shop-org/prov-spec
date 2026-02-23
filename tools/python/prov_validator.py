@@ -24,7 +24,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 # Spec version
 SPEC_VERSION = "0.1.0"
@@ -60,7 +60,7 @@ def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def load_method_catalog() -> Dict[str, Any]:
+def load_method_catalog() -> dict[str, Any]:
     """Load the method catalog from spec/methods.json."""
     spec_path = find_spec_root() / "methods.json"
     if spec_path.exists():
@@ -83,7 +83,7 @@ def compute_sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def compute_artifact_digest(content: Any) -> Dict[str, str]:
+def compute_artifact_digest(content: Any) -> dict[str, str]:
     """Compute digest for an artifact's content."""
     if isinstance(content, bytes):
         data = content
@@ -94,7 +94,7 @@ def compute_artifact_digest(content: Any) -> Dict[str, str]:
     return {"alg": "sha256", "value": compute_sha256(data)}
 
 
-def validate_method_id_syntax(method_id: str) -> Tuple[bool, Optional[str]]:
+def validate_method_id_syntax(method_id: str) -> tuple[bool, str | None]:
     """Validate method ID matches grammar.
 
     Returns:
@@ -105,7 +105,7 @@ def validate_method_id_syntax(method_id: str) -> Tuple[bool, Optional[str]]:
     return True, None
 
 
-def validate_method_id_namespace(method_id: str) -> Tuple[bool, Optional[str]]:
+def validate_method_id_namespace(method_id: str) -> tuple[bool, str | None]:
     """Validate method ID uses a known namespace.
 
     Returns:
@@ -120,8 +120,8 @@ def validate_method_id_namespace(method_id: str) -> Tuple[bool, Optional[str]]:
 
 
 def validate_method_id_catalog(
-    method_id: str, catalog: Dict[str, Any]
-) -> Tuple[bool, Optional[str]]:
+    method_id: str, catalog: dict[str, Any]
+) -> tuple[bool, str | None]:
     """Validate method ID is in the catalog.
 
     Returns:
@@ -134,8 +134,8 @@ def validate_method_id_catalog(
 
 
 def validate_methods_in_record(
-    record: Dict[str, Any], strict: bool = False
-) -> List[Dict[str, Any]]:
+    record: dict[str, Any], strict: bool = False
+) -> list[dict[str, Any]]:
     """Validate all method IDs in a provenance record.
 
     Args:
@@ -159,25 +159,25 @@ def validate_methods_in_record(
     for method_id in methods:
         # Check syntax
         valid, error = validate_method_id_syntax(method_id)
-        if not valid:
+        if not valid and error is not None:
             issues.append({"level": "error", "message": error})
             continue
 
         # Check namespace
         valid, error = validate_method_id_namespace(method_id)
-        if not valid:
+        if not valid and error is not None:
             issues.append({"level": "error", "message": error})
 
         # Check catalog membership (strict mode only)
         if strict:
             valid, error = validate_method_id_catalog(method_id, catalog)
-            if not valid:
+            if not valid and error is not None:
                 issues.append({"level": "warning", "message": error})
 
     return issues
 
 
-def validate_capability_manifest(manifest: Dict[str, Any]) -> List[Dict[str, Any]]:
+def validate_capability_manifest(manifest: dict[str, Any]) -> list[dict[str, Any]]:
     """Validate a prov-capabilities.json manifest.
 
     Args:
@@ -199,23 +199,23 @@ def validate_capability_manifest(manifest: Dict[str, Any]) -> List[Dict[str, Any
     # Validate implemented methods
     for method_id in manifest.get("implements", []):
         valid, error = validate_method_id_syntax(method_id)
-        if not valid:
+        if not valid and error is not None:
             issues.append({"level": "error", "message": error})
         else:
             valid, error = validate_method_id_catalog(method_id, catalog)
-            if not valid:
+            if not valid and error is not None:
                 issues.append({"level": "warning", "message": error})
 
     # Validate optional methods
     for method_id in manifest.get("optional", []):
         valid, error = validate_method_id_syntax(method_id)
-        if not valid:
+        if not valid and error is not None:
             issues.append({"level": "error", "message": error})
 
     return issues
 
 
-def check_test_vector(vector_id: str, expect_fail: bool = False) -> List[Dict[str, Any]]:
+def check_test_vector(vector_id: str, expect_fail: bool = False) -> list[dict[str, Any]]:
     """Run a test vector and check results.
 
     Args:

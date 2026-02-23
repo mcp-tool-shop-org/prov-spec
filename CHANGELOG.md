@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.1.1] - 2026-02-23
+
+### Fixed
+- Repository URLs pointing to wrong GitHub org throughout documentation
+- Schema identifier in SETUP.md (`mcp-tool-shop/prov-capabilities@v0.1` → `prov-capabilities@v0.1`)
+- Clone URL in README (`prov-spec/prov-spec` → `mcp-tool-shop-org/prov-spec`)
+- Mypy type errors in validator (6 `Optional[str]` narrowing issues)
+
+### Added
+- CI: ruff lint and mypy type checking steps
+- CI: paths filters, concurrency group, `workflow_dispatch` fallback
+- Ruff configuration (`ruff.toml`) with expanded rule set
+
+### Changed
+- Modernized type annotations in validator (`Dict` → `dict`, `List` → `list`, etc.)
+- CI: reduced Python matrix from 4 to 2 versions (3.10 + 3.12)
+
 ## [0.1.0] - 2025-01
 
 ### Added
@@ -67,3 +86,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 > Method IDs marked `stable` are append-only and will never change semantics.
 > Compatibility is guaranteed within a major version.
+
+[Unreleased]: https://github.com/mcp-tool-shop-org/prov-spec/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/mcp-tool-shop-org/prov-spec/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/mcp-tool-shop-org/prov-spec/releases/tag/v0.1.0
