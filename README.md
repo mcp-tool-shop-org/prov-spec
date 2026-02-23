@@ -3,7 +3,9 @@
 
 ---
 
-# prov-spec
+<p align="center">
+  <img src="assets/logo.png" alt="Prov-Spec — Provenance Specification Framework" width="360" />
+</p>
 
 **A formal, versioned specification and conformance suite for provenance method IDs, records, and validation.**
 
