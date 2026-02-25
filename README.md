@@ -4,13 +4,21 @@
 ---
 
 <p align="center">
-  <img src="assets/logo.png" alt="Prov-Spec — Provenance Specification Framework" width="360" />
+  <a href="README.md">English</a> | <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+</p>
+
+<p align="center">
+  <img src="assets/logo.png" alt="Prov-Spec — Provenance Specification Framework" width="400" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/mcp-tool-shop-org/prov-spec/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/prov-spec/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="spec/PROV_METHODS_SPEC.md"><img src="https://img.shields.io/badge/spec-v0.1.0-blue" alt="Spec Version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
+  <a href="https://mcp-tool-shop-org.github.io/prov-spec/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
 
 **A formal, versioned specification and conformance suite for provenance method IDs, records, and validation.**
-
-[![Spec Version](https://img.shields.io/badge/spec-v0.1.0-blue)](spec/PROV_METHODS_SPEC.md)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 ---
 
