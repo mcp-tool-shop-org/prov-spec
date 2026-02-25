@@ -1,11 +1,11 @@
+<p align="center">
+  <a href="README.md">English</a> | <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+</p>
+
 > ⚠️ **This repository has moved to [accessibility-suite](https://github.com/mcp-tool-shop-org/accessibility-suite)**
 > Source now lives at: `docs/prov-spec/`
 
 ---
-
-<p align="center">
-  <a href="README.md">English</a> | <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
-</p>
 
 <p align="center">
   <img src="assets/logo.png" alt="Prov-Spec — Provenance Specification Framework" width="400" />
