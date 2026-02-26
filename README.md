@@ -8,9 +8,7 @@
 ---
 
 <p align="center">
-  
-            <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/prov-spec/readme.png"
-           alt="Prov-Spec — Provenance Specification Framework" width="400" />
+  <img src="assets/logo.png" alt="Prov-Spec — Provenance Specification Framework" width="400" />
 </p>
 
 <p align="center">
