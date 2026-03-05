@@ -14,7 +14,7 @@ export const config: SiteConfig = {
     headlineAccent: 'any language.',
     description: 'A formal, language-neutral specification for verifiable provenance — stable method IDs, JSON schemas, conformance levels, and test vectors.',
     primaryCta: { href: '#quickstart', label: 'Quick start' },
-    secondaryCta: { href: '#conformance', label: 'Conformance levels' },
+    secondaryCta: { href: 'handbook/', label: 'Handbook' },
     previews: [
       {
         label: 'Verify',
