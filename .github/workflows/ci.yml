@@ -60,6 +60,28 @@ jobs:
       - name: Run test vector - adapter.wrap.envelope_v0_1
         run: python tools/python/prov_validator.py check-vector adapter.wrap.envelope_v0_1
 
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Secret scan
+        run: |
+          echo "Scanning for hardcoded secrets..."
+          FOUND=0
+          # Check for common secret patterns in tracked files
+          for pattern in "PRIVATE.KEY" "sk_live_" "sk_test_" "aws_secret" "password\s*=" "api_key\s*="; do
+            if git grep -lI "$pattern" -- ':!SECURITY.md' ':!*.md' 2>/dev/null; then
+              echo "FAIL: potential secret pattern '$pattern' found"
+              FOUND=1
+            fi
+          done
+          if [ "$FOUND" -eq 1 ]; then
+            exit 1
+          fi
+          echo "No hardcoded secrets detected"
+
   spec-lint:
     runs-on: ubuntu-latest
 
