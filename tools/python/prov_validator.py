@@ -27,7 +27,7 @@ from pathlib import Path
 from typing import Any
 
 # Spec version
-SPEC_VERSION = "0.1.0"
+SPEC_VERSION = "1.0.0"
 
 # Method ID grammar (from PROV_METHODS_SPEC.md Section 3)
 METHOD_ID_PATTERN = re.compile(
@@ -305,6 +305,108 @@ def check_test_vector(vector_id: str, expect_fail: bool = False) -> list[dict[st
     return issues
 
 
+def validate_all_schemas() -> list[dict[str, Any]]:
+    """Validate all JSON schemas in spec/schemas/ are well-formed JSON.
+
+    Returns:
+        List of validation issues
+    """
+    issues = []
+    spec_root = find_spec_root()
+    schemas_path = spec_root / "schemas"
+
+    if not schemas_path.exists():
+        issues.append({
+            "level": "error",
+            "message": "spec/schemas/ directory not found",
+        })
+        return issues
+
+    schema_files = sorted(schemas_path.glob("*.json"))
+    if not schema_files:
+        issues.append({
+            "level": "warning",
+            "message": "No JSON schema files found in spec/schemas/",
+        })
+        return issues
+
+    valid_count = 0
+    for schema_file in schema_files:
+        try:
+            data = load_json(schema_file)
+            # Basic structural checks
+            if not isinstance(data, dict):
+                issues.append({
+                    "level": "error",
+                    "message": f"{schema_file.name}: root is not an object",
+                })
+            else:
+                valid_count += 1
+        except json.JSONDecodeError as e:
+            issues.append({
+                "level": "error",
+                "message": f"{schema_file.name}: invalid JSON — {e}",
+            })
+
+    if not any(i["level"] == "error" for i in issues):
+        issues.append({
+            "level": "info",
+            "message": f"All {valid_count} schemas valid",
+        })
+
+    return issues
+
+
+def self_test() -> list[dict[str, Any]]:
+    """Run all built-in test vectors and schema validation.
+
+    Returns:
+        List of validation issues
+    """
+    issues = []
+    spec_root = find_spec_root()
+
+    # 1. Validate schemas
+    schema_issues = validate_all_schemas()
+    issues.extend(schema_issues)
+
+    # 2. Run all test vectors
+    vectors_path = spec_root / "vectors"
+    if vectors_path.exists():
+        for vector_dir in sorted(vectors_path.iterdir()):
+            if vector_dir.is_dir() and (vector_dir / "input.json").exists():
+                vector_issues = check_test_vector(vector_dir.name)
+                issues.extend(vector_issues)
+    else:
+        issues.append({
+            "level": "warning",
+            "message": "spec/vectors/ directory not found",
+        })
+
+    # 3. Validate method catalog
+    catalog = load_method_catalog()
+    method_count = len(catalog.get("methods", []))
+    if method_count == 0:
+        issues.append({
+            "level": "warning",
+            "message": "Method catalog is empty",
+        })
+    else:
+        # Validate each method ID in catalog
+        for method in catalog.get("methods", []):
+            mid = method.get("id", "")
+            valid, error = validate_method_id_syntax(mid)
+            if not valid and error is not None:
+                issues.append({"level": "error", "message": f"Catalog: {error}"})
+
+        issues.append({
+            "level": "info",
+            "message": f"Method catalog: {method_count} methods validated",
+        })
+
+    return issues
+
+
 def main():
     """CLI entry point."""
     parser = argparse.ArgumentParser(
@@ -359,6 +461,18 @@ def main():
         help="List all test vectors",
     )
 
+    # validate-schemas command
+    subparsers.add_parser(
+        "validate-schemas",
+        help="Validate all JSON schemas in spec/schemas/",
+    )
+
+    # self-test command
+    subparsers.add_parser(
+        "self-test",
+        help="Run all built-in validation checks (schemas, vectors, catalog)",
+    )
+
     args = parser.parse_args()
 
     if args.command == "validate-methods":
@@ -400,6 +514,12 @@ def main():
                         markers.append("negative")
                     print(f"  {vector_dir.name} ({', '.join(markers)})")
         return 0
+
+    elif args.command == "validate-schemas":
+        issues = validate_all_schemas()
+
+    elif args.command == "self-test":
+        issues = self_test()
 
     else:
         parser.print_help()

@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-03-25
+
+### Added
+
+- `validate-schemas` command — validates all JSON schemas in spec/schemas/ are well-formed
+- `self-test` command — runs all built-in validation checks (schemas, vectors, catalog)
+- Promoted to v1.0.0 stable release
+
+### Changed
+
+- SPEC_VERSION bumped from 0.1.0 to 1.0.0
+
 ## [0.1.1] - 2026-02-23
 
 ### Fixed
