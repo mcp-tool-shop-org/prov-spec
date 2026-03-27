@@ -73,13 +73,16 @@ Use the reference validator to list methods, validate records, and run test vect
 
 ```bash
 # List known methods
-python -m prov_validator list-methods
+python tools/python/prov_validator.py list-methods
 
 # Validate a provenance record
-python -m prov_validator validate-methods record.json --strict
+python tools/python/prov_validator.py validate-methods record.json --strict
 
 # Run test vectors
-python -m prov_validator check-vector integrity.digest.sha256
+python tools/python/prov_validator.py check-vector integrity.digest.sha256
+
+# Run all built-in checks (schemas, vectors, catalog)
+python tools/python/prov_validator.py self-test
 ```
 
 ## Next steps

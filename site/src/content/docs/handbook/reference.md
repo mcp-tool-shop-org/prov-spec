@@ -90,14 +90,21 @@ Every method ID carries a semantic contract. Claiming a method means the provena
 
 ## Schema files
 
+All schemas live in `spec/schemas/` and use `additionalProperties: false` for strict validation.
+
 | Schema | Purpose |
 |--------|---------|
 | `prov.record.schema.v0.1.json` | Provenance record |
 | `artifact.schema.v0.1.json` | Artifact metadata |
+| `artifact.ref.schema.v0.1.json` | Artifact references |
 | `evidence.schema.v0.1.json` | Evidence anchor |
 | `mcp.envelope.schema.v0.1.json` | Envelope wrapper |
+| `mcp.request.schema.v0.1.json` | MCP request format |
 | `prov-capabilities.schema.json` | Capability manifest |
-| `methods.schema.json` | Method catalog |
+| `methods.schema.json` | Method catalog format |
+| `assist.request.schema.v0.1.json` | Assist request |
+| `assist.response.schema.v0.1.json` | Assist response |
+| `cli.error.schema.v0.1.json` | CLI error format |
 
 ## RFC references
 

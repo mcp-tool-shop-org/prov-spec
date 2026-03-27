@@ -15,6 +15,7 @@ Welcome to the **prov-spec** handbook -- a practical guide to understanding, imp
 | [Conformance](/prov-spec/handbook/conformance/) | The three conformance levels and the four method namespaces |
 | [Specification](/prov-spec/handbook/specification/) | Repository layout, versioning policy, canonicalization, and change control |
 | [Reference](/prov-spec/handbook/reference/) | Complete method catalog, namespace details, and the stability guarantee |
+| [Beginners Guide](/prov-spec/handbook/beginners/) | Step-by-step walkthrough for first-time implementers |
 
 ## Quick links
 

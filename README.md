@@ -2,18 +2,13 @@
   <a href="README.md">English</a> | <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
 </p>
 
-> ⚠️ **This repository has moved to [accessibility-suite](https://github.com/mcp-tool-shop-org/accessibility-suite)**
-> Source now lives at: `docs/prov-spec/`
-
----
-
 <p align="center">
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/prov-spec/readme.png" alt="Prov-Spec — Provenance Specification Framework" width="400" />
 </p>
 
 <p align="center">
   <a href="https://github.com/mcp-tool-shop-org/prov-spec/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/prov-spec/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="spec/PROV_METHODS_SPEC.md"><img src="https://img.shields.io/badge/spec-v0.1.0-blue" alt="Spec Version"></a>
+  <a href="spec/PROV_METHODS_SPEC.md"><img src="https://img.shields.io/badge/spec-v1.0.0-blue" alt="Spec Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
   <a href="https://mcp-tool-shop-org.github.io/prov-spec/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
@@ -118,20 +113,26 @@ python -m prov_validator check-vector integrity.digest.sha256
 prov-spec/
 ├── spec/                    # Normative specification
 │   ├── PROV_METHODS_SPEC.md # Main specification document
+│   ├── PROV_METHODS_CATALOG.md # Human-readable method registry
+│   ├── MCP_COMPATIBILITY.md # MCP envelope compatibility policy
 │   ├── methods.json         # Machine-readable method catalog
 │   ├── schemas/             # JSON Schemas
 │   │   ├── prov.record.schema.v0.1.json
 │   │   ├── artifact.schema.v0.1.json
 │   │   ├── evidence.schema.v0.1.json
 │   │   ├── mcp.envelope.schema.v0.1.json
-│   │   └── prov-capabilities.schema.json
-│   └── vectors/             # Test vectors
+│   │   ├── prov-capabilities.schema.json
+│   │   └── methods.schema.json
+│   └── vectors/             # Test vectors (positive + negative)
 │       ├── integrity.digest.sha256/
 │       ├── adapter.wrap.envelope_v0_1/
-│       └── ...
+│       ├── engine.extract.evidence.json_pointer/
+│       └── method_id_syntax/
 ├── tools/                   # Reference implementations (optional)
 │   └── python/              # Python reference validator
-├── examples/                # Example files
+├── examples/                # Example JSON files
+├── interop/                 # Interoperability proofs
+│   └── PROOF_NODE_ENGINE.md # Node.js engine proof
 ├── CONFORMANCE_LEVELS.md    # Conformance tiers
 └── CHANGELOG.md             # Version history
 ```
@@ -167,7 +168,7 @@ Reserved for future use: `policy.*`, `attestation.*`, `execution.*`, `audit.*`
 
 ## Versioning
 
-- **Spec version:** `v0.1.0`
+- **Spec version:** `v1.0.0`
 - **Method catalog:** append-only within major version
 - **Schemas:** `additionalProperties: false` — forward-compatible within patch
 

@@ -11,20 +11,25 @@ sidebar:
 prov-spec/
 ├── spec/                    # Normative specification
 │   ├── PROV_METHODS_SPEC.md # Main specification document
+│   ├── PROV_METHODS_CATALOG.md # Human-readable method registry
+│   ├── MCP_COMPATIBILITY.md # MCP envelope compatibility policy
 │   ├── methods.json         # Machine-readable method catalog
 │   ├── schemas/             # JSON Schemas
 │   │   ├── prov.record.schema.v0.1.json
 │   │   ├── artifact.schema.v0.1.json
 │   │   ├── evidence.schema.v0.1.json
 │   │   ├── mcp.envelope.schema.v0.1.json
-│   │   └── prov-capabilities.schema.json
-│   └── vectors/             # Test vectors
+│   │   ├── prov-capabilities.schema.json
+│   │   └── methods.schema.json
+│   └── vectors/             # Test vectors (positive + negative)
 │       ├── integrity.digest.sha256/
 │       ├── adapter.wrap.envelope_v0_1/
-│       └── ...
+│       ├── engine.extract.evidence.json_pointer/
+│       └── method_id_syntax/
 ├── tools/                   # Reference implementations
 │   └── python/              # Python reference validator
-├── examples/                # Example files
+├── examples/                # Example JSON files
+├── interop/                 # Interoperability proofs
 ├── CONFORMANCE_LEVELS.md    # Conformance tiers
 └── CHANGELOG.md             # Version history
 ```
@@ -38,7 +43,7 @@ Key directories:
 
 ## Versioning
 
-Current spec version: **v0.1.0**
+Current spec version: **v1.0.0**
 
 ### Allowed changes by version type
 

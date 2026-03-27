@@ -112,14 +112,14 @@ Declare optional methods in your `prov-capabilities.json`:
 
 ```bash
 # Validate your manifest
-python -m prov_validator validate-manifest prov-capabilities.json
+python tools/python/prov_validator.py validate-manifest prov-capabilities.json
 
 # Run applicable test vectors
-python -m prov_validator check-vector integrity.digest.sha256
-python -m prov_validator check-vector adapter.wrap.envelope_v0_1
+python tools/python/prov_validator.py check-vector integrity.digest.sha256
+python tools/python/prov_validator.py check-vector adapter.wrap.envelope_v0_1
 
-# Generate a conformance report
-python -m prov_validator conformance-report prov-capabilities.json -o report.json
+# Run all built-in checks (schemas, vectors, catalog)
+python tools/python/prov_validator.py self-test
 ```
 
 ## Next steps
